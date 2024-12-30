@@ -13,9 +13,9 @@ Cette application est un chronomètre simple et intuitif développé en React Na
 
 ## Captures d'écran
 
-<img src="https://i.ibb.co/wRyD6S6/Screenshot-20241230-145134.jpg">
-<img src="https://i.ibb.co/hmDn66q/Screenshot-20241230-145144.jpg">
-<img src="https://i.ibb.co/52hppMH/Screenshot-20241230-145153.jpg">
+<img src="https://i.ibb.co/wRyD6S6/Screenshot-20241230-145134.jpg" alt="Chronometre" width="300">
+<img src="https://i.ibb.co/hmDn66q/Screenshot-20241230-145144.jpg" alt="Chronometre en marche" width="300">
+<img src="https://i.ibb.co/52hppMH/Screenshot-20241230-145153.jpg" alt="Chronometre sur pause" width="300">
 
 ## Installation
 
