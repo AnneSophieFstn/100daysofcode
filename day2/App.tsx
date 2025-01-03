@@ -1,64 +1,80 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Alert,
+  FlatList,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import Checkbox from "expo-checkbox";
-
-interface Task {
-  id: number;
-  name: string;
-  completed: boolean;
-}
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import ListItem from "./components/ListItem";
 
 export default function App() {
+  useEffect(() => {
+    getData();
+  }, []);
+
   const [todo, onChangeTodo] = useState<string>("");
-  const [isChecked, setChecked] = useState<boolean>(false);
 
-  const [tasks, setTasks] = useState<Task[]>([
-    { id: 1, name: "Todo 1", completed: false },
-    { id: 2, name: "Todo 2", completed: true },
-    { id: 3, name: "Todo 3", completed: false },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
-  const addTodo = (inputText: string) => {
-    console.log("TEXT INPUT: ", inputText);
+  const addData = async (value: string) => {
+    try {
+      const newTodo = { id: Date.now(), name: value, completed: false };
 
-    if (inputText.length == 0) {
-      Alert.alert("Attention", "You need to write something", [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ]);
+      // Ajout de la nouvelle tâche au tableau existant
+      const updatedTasks = [...tasks, newTodo];
+      setTasks(updatedTasks);
+
+      await AsyncStorage.setItem("my-key", JSON.stringify(updatedTasks));
+      onChangeTodo("");
+    } catch (error) {
+      console.log("error: ", error);
     }
-
-    const newTodo = { id: Date.now(), name: inputText, completed: false };
-    setTasks([...tasks, newTodo]);
-    onChangeTodo("");
-    console.log("TASKS: ", tasks);
   };
 
-  const completeTodo = (id: number) => {
-    setTasks(
-      tasks.map((task) =>
+  const getData = async () => {
+    try {
+      const data = await AsyncStorage.getItem("my-key");
+      if (data !== null) {
+        const parsedTodos = JSON.parse(data);
+
+        // Vérifiez que parsedTodos est un tableau avant de le définir
+        if (Array.isArray(parsedTodos)) {
+          setTasks(parsedTodos);
+        } else {
+          setTasks([parsedTodos]); // En cas de problème, le mettre dans un tableau
+        }
+      }
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
+  const completeTodo = async (id: number) => {
+    try {
+      const updatedTasks = tasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
-    // console.log("TODO COMPLETED LIST: ", tasks);
+      );
+
+      setTasks(updatedTasks);
+      await AsyncStorage.setItem("my-key", JSON.stringify(updatedTasks));
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
 
-  const delTodo = (id: number) => {
-    console.log("DEL TODO ID: ", id);
-    setTasks(tasks.filter((task) => task.id !== id));
+  const deleteTodo = async (id: number) => {
+    try {
+      const destroyTodo = tasks.filter((task) => task.id !== id);
+      setTasks(destroyTodo);
+
+      await AsyncStorage.setItem("my-key", JSON.stringify(destroyTodo));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -73,30 +89,26 @@ export default function App() {
           value={todo}
           placeholder="New task"
         />
-        <TouchableOpacity onPress={() => addTodo(todo)} style={styles.button}>
+
+        <TouchableOpacity onPress={() => addData(todo)} style={styles.button}>
           <Text style={styles.color}>Add</Text>
         </TouchableOpacity>
       </View>
 
       <View>
-        {tasks.map((task) => (
-          <View style={styles.todo} key={task.id}>
-            <Checkbox
-              style={styles.checkbox}
-              value={task.completed}
-              onValueChange={() => completeTodo(task.id)}
+        <FlatList
+          data={tasks}
+          renderItem={({ item }) => (
+            <ListItem
+              id={item.id}
+              completed={item.completed}
+              name={item.name}
+              onToggleCompleted={completeTodo}
+              onToggleDelete={deleteTodo}
             />
-            <Text style={task.completed ? styles.completed : null}>
-              {task.name}
-            </Text>
-            <AntDesign
-              name="closecircleo"
-              size={20}
-              color="red"
-              onPress={() => delTodo(task.id)}
-            />
-          </View>
-        ))}
+          )}
+          keyExtractor={(item) => item.id}
+        />
       </View>
       <StatusBar style="auto" />
     </View>
@@ -128,22 +140,5 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     alignItems: "center",
     padding: 15,
-  },
-  todo: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 15,
-    borderWidth: 0.5,
-    borderRadius: 10,
-    padding: 10,
-  },
-  checkbox: {
-    margin: 8,
-  },
-
-  completed: {
-    textDecorationLine: "line-through",
   },
 });
