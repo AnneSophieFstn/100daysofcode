@@ -18,7 +18,7 @@ Chaque repo a son propre README dans lequel le travail du jour sera expliqué.
 - Day 2: Todo list app use AsyncStorage - React native
 - Day 3/4: Mini app - React navigation (Drawer, Stack & Tab navigation)
 - Day 5: AsyncStorage with Day 2 Todo List app - React native
-- Day 6:
+- Day 6: Food app with TheMealDB API - React native
 - Day 7:
 - Day 8:
 - Day 9:
