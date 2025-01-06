@@ -24,7 +24,7 @@ export default function Categories() {
   }, []);
 
   return (
-    <View style={{ marginTop: 30 }}>
+    <View style={{ marginTop: 20 }}>
       <Text style={styles.subtitle}>Categories</Text>
       <FlatList
         data={categories}
@@ -46,6 +46,6 @@ export default function Categories() {
 const styles = StyleSheet.create({
   subtitle: {
     fontWeight: 800,
-    fontSize: 18,
+    fontSize: 20,
   },
 });

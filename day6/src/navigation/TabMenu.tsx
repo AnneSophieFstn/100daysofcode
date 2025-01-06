@@ -15,6 +15,7 @@ export default function TabMenu() {
         component={StackScreen}
         options={{
           headerShown: false,
+          title: "Home",
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name={focused ? "home" : "home-outline"}

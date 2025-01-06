@@ -19,7 +19,7 @@ export default function Meals() {
   }, []);
 
   return (
-    <View style={{ marginTop: 30 }}>
+    <View style={{ marginTop: 15 }}>
       <Text style={styles.subtitle}>Meals</Text>
 
       <FlatList
@@ -43,6 +43,6 @@ export default function Meals() {
 const styles = StyleSheet.create({
   subtitle: {
     fontWeight: 800,
-    fontSize: 18,
+    fontSize: 20,
   },
 });

@@ -8,44 +8,34 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
-type ItemMealProps = {
-  idMeal: string;
-  image: string;
-  title: string;
-  tags: string;
+type ItemCountryProps = {
+  country: string;
 };
 
-export default function ListMeals({
-  idMeal,
-  image,
-  title,
-  tags,
-}: ItemMealProps) {
+export default function ListCountry({ country }: ItemCountryProps) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-      key={idMeal}
-      style={styles.contentMeal}
-      onPress={() => navigation.navigate("DetailsMeal", { idMeal })}
+      style={styles.contentCountry}
+      //   onPress={() => navigation.navigate("DetailsCountry", { idCountry })}
     >
       <Image
         resizeMode="cover"
         style={styles.image}
         source={{
-          uri: `${image}`,
+          uri: `https:\/\/www.themealdb.com\/images\/media\/meals\/kos9av1699014767.jpg`,
         }}
       />
       <View>
-        <Text style={styles.titleMeal}>{title}</Text>
-        {/* <Text style={styles.tagMeal}>{tags}</Text> */}
+        <Text style={styles.titleCountry}>{country}</Text>
+        {/* <Text style={styles.tagCountry}>{tags}</Text> */}
       </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  contentMeal: {
+  contentCountry: {
     marginTop: 10,
     marginRight: 10,
     borderColor: "black",
@@ -55,13 +45,13 @@ const styles = StyleSheet.create({
     width: 200,
     height: 250,
   },
-  titleMeal: {
+  titleCountry: {
     bottom: 0,
     color: "#000",
     fontSize: 16,
     fontWeight: "bold",
   },
-  tagMeal: {
+  tagCountry: {
     bottom: 0,
     color: "#fff",
     fontSize: 18,
