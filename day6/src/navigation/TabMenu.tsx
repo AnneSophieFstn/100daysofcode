@@ -27,8 +27,10 @@ export default function TabMenu() {
       />
       <Tab.Screen
         name="Search"
-        component={Search}
+        component={StackScreen}
+        initialParams={{ screen: "Search" }}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name={focused ? "search" : "search-outline"}

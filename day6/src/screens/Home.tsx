@@ -10,7 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import Categories from "../components/categories/Categories";
 import Meals from "../components/meals/Meals";
-import Country from "../components/country/Country";
+import Recommendation from "../components/recommendation/Recommendations";
 
 export default function Home() {
   const navigation = useNavigation();
@@ -24,7 +24,7 @@ export default function Home() {
 
         <Meals />
 
-        <Country />
+        <Recommendation />
       </ScrollView>
     </SafeAreaView>
   );

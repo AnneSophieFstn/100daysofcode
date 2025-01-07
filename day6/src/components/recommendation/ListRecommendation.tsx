@@ -8,26 +8,35 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-type ItemCountryProps = {
-  country: string;
+
+type ItemMealProps = {
+  idMeal: string;
+  image: string;
+  title: string;
+  tags: string;
 };
 
-export default function ListCountry({ country }: ItemCountryProps) {
+export default function ListCountry({
+  idMeal,
+  image,
+  title,
+  tags,
+}: ItemMealProps) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.contentCountry}
-      //   onPress={() => navigation.navigate("DetailsCountry", { idCountry })}
+      onPress={() => navigation.navigate("DetailsMeal", { idMeal })}
     >
       <Image
         resizeMode="cover"
         style={styles.image}
         source={{
-          uri: `https:\/\/www.themealdb.com\/images\/media\/meals\/kos9av1699014767.jpg`,
+          uri: `${image}`,
         }}
       />
       <View>
-        <Text style={styles.titleCountry}>{country}</Text>
+        <Text style={styles.titleCountry}>{title}</Text>
         {/* <Text style={styles.tagCountry}>{tags}</Text> */}
       </View>
     </TouchableOpacity>
