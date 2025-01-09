@@ -4,17 +4,13 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useEffect } from "react";
 import Categories from "../components/categories/Categories";
 import Meals from "../components/meals/Meals";
 import Recommendation from "../components/recommendation/Recommendations";
 
 export default function Home() {
-  const navigation = useNavigation();
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>

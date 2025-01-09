@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import ListMeals from "./ListMeals";
+import CustomFlatList from "../CustomFlatList";
+import { RecipeMeal } from "../../types/MealType";
 
 export default function Meals() {
-  const [meals, setMeals] = useState([]);
+  const [meals, setMeals] = useState<RecipeMeal[]>([]);
   const [selectedId, setSelectedId] = useState<string>();
 
   const getDataMeals = async () => {
@@ -22,7 +24,7 @@ export default function Meals() {
     <View style={{ marginTop: 15 }}>
       <Text style={styles.subtitle}>Meals</Text>
 
-      <FlatList
+      <CustomFlatList
         horizontal={true}
         data={meals}
         renderItem={({ item }) => (
@@ -30,7 +32,6 @@ export default function Meals() {
             idMeal={item.idMeal}
             image={item.strMealThumb}
             title={item.strMeal}
-            tags={item.strTags}
           />
         )}
         keyExtractor={(item) => item.idMeal}

@@ -2,11 +2,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
 import DetailsMeal from "../screens/DetailsMeal";
 import Search from "../screens/Search";
+import CategoryMeal from "../screens/CategoryMeal";
 
 type RootStackParamList = {
   Home: undefined;
-  Search: { mealId: string };
-  DetailsMeal: { mealId: string };
+  Search: { idMeal: string };
+  DetailsMeal: { idMeal: string };
+  CategoryMeal: { title: string };
 };
 
 export default function StackScreen() {
@@ -19,15 +21,16 @@ export default function StackScreen() {
         component={Home}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="Search"
-        component={Search}
-        options={{ title: "Search" }}
-      />
+      <Stack.Screen name="Search" component={Search} />
       <Stack.Screen
         name="DetailsMeal"
         component={DetailsMeal}
         options={{ title: "Meal" }}
+      />
+      <Stack.Screen
+        name="CategoryMeal"
+        component={CategoryMeal}
+        options={{ title: "Meal by category" }}
       />
     </Stack.Navigator>
   );

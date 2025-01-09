@@ -8,20 +8,9 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { ItemMealProps } from "../../types/MealType";
 
-type ItemMealProps = {
-  idMeal: string;
-  image: string;
-  title: string;
-  tags: string;
-};
-
-export default function ListMeals({
-  idMeal,
-  image,
-  title,
-  tags,
-}: ItemMealProps) {
+export default function ListMeals({ idMeal, image, title }: ItemMealProps) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -38,7 +27,6 @@ export default function ListMeals({
       />
       <View>
         <Text style={styles.titleMeal}>{title}</Text>
-        {/* <Text style={styles.tagMeal}>{tags}</Text> */}
       </View>
     </TouchableOpacity>
   );

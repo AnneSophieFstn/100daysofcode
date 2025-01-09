@@ -1,10 +1,9 @@
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { ItemMealProps } from "../types/MealType";
 import { useNavigation } from "@react-navigation/native";
-import { ItemMealProps } from "../../types/MealType";
 
-export default function ListSearch({ idMeal, image, title }: ItemMealProps) {
+export default function CustomItem({ idMeal, image, title }: ItemMealProps) {
   const navigation = useNavigation();
-
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("DetailsMeal", { idMeal })}

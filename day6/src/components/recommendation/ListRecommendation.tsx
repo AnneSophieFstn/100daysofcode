@@ -8,23 +8,13 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { ItemMealProps } from "../../types/MealType";
 
-type ItemMealProps = {
-  idMeal: string;
-  image: string;
-  title: string;
-  tags: string;
-};
-
-export default function ListCountry({
-  idMeal,
-  image,
-  title,
-  tags,
-}: ItemMealProps) {
+export default function ListCountry({ idMeal, image, title }: ItemMealProps) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
+      key={idMeal}
       style={styles.contentCountry}
       onPress={() => navigation.navigate("DetailsMeal", { idMeal })}
     >
@@ -37,7 +27,6 @@ export default function ListCountry({
       />
       <View>
         <Text style={styles.titleCountry}>{title}</Text>
-        {/* <Text style={styles.tagCountry}>{tags}</Text> */}
       </View>
     </TouchableOpacity>
   );

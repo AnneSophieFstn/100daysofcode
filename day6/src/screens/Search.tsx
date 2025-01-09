@@ -1,21 +1,12 @@
 import { useEffect, useState } from "react";
-import {
-  FlatList,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
-import ListSearch from "../components/search/ListSearch";
+import CustomFlatList from "../components/CustomFlatList";
+import CustomItem from "../components/CustomItem";
 
 export default function Search() {
   const [search, setSearch] = useState<string>();
   const [mealFound, setMealFound] = useState(null);
-  const navigation = useNavigation();
 
   useEffect(() => {
     foundData();
@@ -32,7 +23,14 @@ export default function Search() {
   };
 
   return (
-    <ScrollView style={{ flex: 1, padding: 16 }}>
+    <ScrollView
+      contentContainerStyle={{
+        padding: 8,
+        flex: 1,
+        paddingBottom: 20,
+        justifyContent: "center",
+      }}
+    >
       <TextInput
         mode="outlined"
         label="Search"
@@ -58,12 +56,12 @@ export default function Search() {
         </View>
       ) : (
         <View>
-          <FlatList
+          <CustomFlatList
             style={{ marginTop: 10 }}
             data={mealFound}
             numColumns={2}
             renderItem={({ item }) => (
-              <ListSearch
+              <CustomItem
                 idMeal={item.idMeal}
                 image={item.strMealThumb}
                 title={item.strMeal}

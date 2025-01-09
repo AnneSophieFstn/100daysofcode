@@ -12,8 +12,6 @@ export default function Recommendations() {
     );
     const json = await data.json();
 
-    console.log("JSON: ", json);
-
     setRecommendation(json.meals);
   };
   useEffect(() => {
@@ -32,7 +30,6 @@ export default function Recommendations() {
             idMeal={item.idMeal}
             image={item.strMealThumb}
             title={item.strMeal}
-            tags={item.strTags}
           />
         )}
         keyExtractor={(item) => item.idMeal}

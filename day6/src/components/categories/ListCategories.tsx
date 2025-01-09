@@ -1,17 +1,17 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ItemCategoryProps } from "../../types/CategoryType";
+import { useNavigation } from "@react-navigation/native";
 
-type ItemProps = {
-  idCat: string;
-  image: string;
-  title: string;
-};
-
-export default function ListCategories({ idCat, image, title }: ItemProps) {
-  // https:\/\/www.themealdb.com\/images\/category\/miscellaneous.png
+export default function ListCategories({
+  idCat,
+  image,
+  title,
+}: ItemCategoryProps) {
+  const navigation = useNavigation();
 
   return (
     <TouchableOpacity
-      onPress={() => console.log("ok")}
+      onPress={() => navigation.navigate("CategoryMeal", { title })}
       key={idCat}
       style={styles.content}
     >
