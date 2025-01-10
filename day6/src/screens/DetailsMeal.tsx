@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import {
+  ActivityIndicator,
+  ActivityIndicatorComponent,
   Image,
   ScrollView,
   StyleSheet,
@@ -13,11 +15,13 @@ import { RecipeMeal } from "../types/MealType";
 import FavoriteContext, {
   FavoriteMealContext,
 } from "../context/FavoriteContext";
+import { Skeleton } from "moti/skeleton";
 
 export default function DetailsMeal(props) {
   const idMeal = props.route.params?.idMeal;
   const [recipe, setRecipe] = useState<RecipeMeal>();
   const [ingredients, setIngredients] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { addFavorite, isLiked, isFavorite, delFavorite } =
     useContext(FavoriteMealContext);
@@ -30,6 +34,7 @@ export default function DetailsMeal(props) {
 
       const json = await data.json();
 
+      setLoading(false);
       setRecipe(json.meals[0]);
     } catch (error) {
       console.error("ERROR: ", error);
@@ -59,12 +64,8 @@ export default function DetailsMeal(props) {
 
   const toggleFavoriteMeal = () => {
     if (isLiked) {
-      console.log("ok like");
-
       delFavorite(idMeal);
     } else {
-      console.log("ok not like");
-
       addFavorite({
         idMeal: idMeal,
         image: recipe?.strMealThumb,
@@ -87,33 +88,52 @@ export default function DetailsMeal(props) {
     }
   }, [recipe]);
 
+  if (loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ActivityIndicator />
+      </View>
+    );
+  }
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <ScrollView
+      contentContainerStyle={{ backgroundColor: "#fff", paddingBottom: 80 }}
+    >
       <View>
-        <TouchableOpacity
-          onPress={() => toggleFavoriteMeal()}
-          style={{
-            position: "absolute",
-            zIndex: 9999,
-            top: 10,
-            right: 10,
-            backgroundColor: "rgba(225, 225, 225, 0.8)",
-            borderRadius: 50,
-            padding: 8,
-          }}
-        >
-          <Ionicons
-            name={isLiked ? "heart" : "heart-outline"}
-            size={24}
-            color={isLiked ? "red" : "black"}
+        <View>
+          <TouchableOpacity
+            onPress={() => toggleFavoriteMeal()}
+            style={{
+              position: "absolute",
+              zIndex: 9999,
+              top: 10,
+              right: 10,
+              backgroundColor: "rgba(225, 225, 225, 0.8)",
+              borderRadius: 50,
+              padding: 8,
+            }}
+          >
+            <Ionicons
+              name={isLiked ? "heart" : "heart-outline"}
+              size={24}
+              color={isLiked ? "red" : "black"}
+            />
+          </TouchableOpacity>
+          <Image
+            style={styles.imageRecipe}
+            source={{
+              uri: `${recipe?.strMealThumb}`,
+            }}
           />
-        </TouchableOpacity>
-        <Image
-          style={styles.imageRecipe}
-          source={{
-            uri: `${recipe?.strMealThumb}`,
-          }}
-        />
+        </View>
+
         <View
           style={{
             paddingLeft: 16,
@@ -144,6 +164,7 @@ export default function DetailsMeal(props) {
               }}
             >
               <AntDesign name="book" size={18} color="gray" />
+
               <Text style={{ marginLeft: 5, color: "gray", fontSize: 12 }}>
                 {recipe?.strCategory}
               </Text>
@@ -157,6 +178,7 @@ export default function DetailsMeal(props) {
               }}
             >
               <Ionicons name="home-outline" size={17} color="gray" />
+
               <Text style={{ marginLeft: 5, color: "gray", fontSize: 12 }}>
                 {recipe?.strArea}
               </Text>
@@ -188,6 +210,7 @@ export default function DetailsMeal(props) {
                     source={{ uri: `${ingredient.image}` }}
                     style={styles.ingredientImage}
                   />
+
                   <Text style={styles.ingredientText}>{ingredient.name}</Text>
                 </View>
 
@@ -204,6 +227,7 @@ export default function DetailsMeal(props) {
             <Text style={{ fontWeight: 800, fontSize: 20, marginTop: 5 }}>
               Instructions
             </Text>
+
             <Text>{recipe?.strInstructions}</Text>
           </View>
         </View>

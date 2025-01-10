@@ -3,7 +3,7 @@ import Favorite from "../screens/Favorite";
 import Home from "../screens/Home";
 import Search from "../screens/Search";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import StackScreen from "./StackScreen";
+import MainStackScreen from "./StackScreen";
 
 export default function TabMenu() {
   const Tab = createBottomTabNavigator();
@@ -12,7 +12,7 @@ export default function TabMenu() {
     <Tab.Navigator>
       <Tab.Screen
         name="HomeStack"
-        component={StackScreen}
+        component={MainStackScreen}
         options={{
           headerShown: false,
           title: "Home",
@@ -27,7 +27,7 @@ export default function TabMenu() {
       />
       <Tab.Screen
         name="SearchStack"
-        component={StackScreen}
+        component={MainStackScreen}
         initialParams={{ screen: "Search" }}
         options={{
           headerShown: false,
@@ -42,9 +42,12 @@ export default function TabMenu() {
         }}
       />
       <Tab.Screen
-        name="Favorite"
-        component={Favorite}
+        name="FavoriteStack"
+        component={MainStackScreen}
+        initialParams={{ screen: "Favorite" }}
         options={{
+          headerShown: false,
+          title: "Favorite",
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name={focused ? "heart" : "heart-outline"}

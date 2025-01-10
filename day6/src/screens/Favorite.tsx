@@ -1,17 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { Button, ScrollView, Text, View } from "react-native";
+import { useContext } from "react";
+import { ScrollView, Text, View } from "react-native";
 import { FavoriteMealContext } from "../context/FavoriteContext";
 import CustomFlatList from "../components/CustomFlatList";
 import CustomItem from "../components/CustomItem";
 
 export default function Favorite() {
-  const { favorites, getFavorites, clearAll } = useContext(FavoriteMealContext);
-
-  console.log("FAV: ", JSON.stringify(favorites, null, 2));
-
-  useEffect(() => {
-    getFavorites();
-  }, []);
+  const { favorites } = useContext(FavoriteMealContext);
 
   return (
     <ScrollView

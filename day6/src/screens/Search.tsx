@@ -7,6 +7,7 @@ import CustomItem from "../components/CustomItem";
 export default function Search() {
   const [search, setSearch] = useState<string>();
   const [mealFound, setMealFound] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     foundData();
@@ -18,7 +19,7 @@ export default function Search() {
     );
 
     const json = await data.json();
-
+    // setLoading(false);
     setMealFound(json.meals);
   };
 
@@ -28,21 +29,23 @@ export default function Search() {
         padding: 8,
         flex: 1,
         paddingBottom: 20,
-        justifyContent: "center",
+        // justifyContent: "center",
       }}
     >
-      <TextInput
-        mode="outlined"
-        label="Search"
-        value={search}
-        left={<TextInput.Icon icon="magnify" />}
-        onChangeText={(text) => setSearch(text)}
-        outlineStyle={{
-          backgroundColor: "#fff",
-          borderRadius: 50,
-          borderWidth: 0.5,
-        }}
-      />
+      <View style={{ justifyContent: "flex-start" }}>
+        <TextInput
+          mode="outlined"
+          label="Search"
+          value={search}
+          left={<TextInput.Icon icon="magnify" />}
+          onChangeText={(text) => setSearch(text)}
+          outlineStyle={{
+            backgroundColor: "#fff",
+            borderRadius: 50,
+            borderWidth: 0.5,
+          }}
+        />
+      </View>
       {mealFound === null ? (
         <View
           style={{
@@ -65,6 +68,7 @@ export default function Search() {
                 idMeal={item.idMeal}
                 image={item.strMealThumb}
                 title={item.strMeal}
+                loading={loading}
               />
             )}
           />

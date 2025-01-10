@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Text,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import Categories from "../components/categories/Categories";
 import Meals from "../components/meals/Meals";
 import Recommendation from "../components/recommendation/Recommendations";

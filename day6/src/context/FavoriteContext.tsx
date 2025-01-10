@@ -29,8 +29,9 @@ export default function FavoriteContext({ children }: any) {
 
       const updateFavorites = [...parsedData, data];
 
-      await AsyncStorage.setItem("favorites", JSON.stringify(updateFavorites));
       setIsLiked(true);
+      await AsyncStorage.setItem("favorites", JSON.stringify(updateFavorites));
+      setFavorites(updateFavorites);
     } catch (error) {
       console.log("error: ", error);
     }
@@ -56,15 +57,7 @@ export default function FavoriteContext({ children }: any) {
       console.log("ERROR DEL FAV: ", error);
     }
   };
-
-  const clearAll = async () => {
-    await AsyncStorage.removeItem("favorites");
-    setFavorites([]);
-  };
-
-  useEffect(() => {
-    getFavorites();
-  }, []);
+  useEffect(() => {}, [favorites]);
 
   return (
     <FavoriteMealContext.Provider
@@ -75,7 +68,6 @@ export default function FavoriteContext({ children }: any) {
         getFavorites,
         addFavorite,
         delFavorite,
-        clearAll,
       }}
     >
       {children}
