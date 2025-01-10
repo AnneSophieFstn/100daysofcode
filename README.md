@@ -19,10 +19,10 @@ Chaque repo a son propre README dans lequel le travail du jour sera expliqué.
 - Day 3/4: Mini app - React navigation (Drawer, Stack & Tab navigation)
 - Day 5: AsyncStorage with Day 2 Todo List app - React native
 - Day 6: Food app with TheMealDB API - React native
-- Day 7:
-- Day 8:
-- Day 9:
-- Day 10:
+- Day 7: Continue to the recipe app - Details page
+- Day 8: Continue to the recipe app - Recommendations and search page
+- Day 9: Continue to the recipe app - Favorites page (useContext)
+- Day 10: Continue to the recipe app - Finish app (without animation)
 - Day 11:
 - Day 12:
 - Day 13:
