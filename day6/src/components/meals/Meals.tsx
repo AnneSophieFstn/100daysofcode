@@ -4,6 +4,7 @@ import ListMeals from "./ListMeals";
 import CustomFlatList from "../CustomFlatList";
 import { RecipeMeal } from "../../types/MealType";
 import CustomList from "../CustomList";
+import ListMealSkeleton from "../skeleton/ListMealSkeleton";
 
 export default function Meals() {
   const [meals, setMeals] = useState<RecipeMeal[]>([]);
@@ -15,12 +16,18 @@ export default function Meals() {
       "https://www.themealdb.com/api/json/v1/1/search.php?f=a"
     );
     const json = await data.json();
-    setLoading(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
     setMeals(json.meals);
   };
   useEffect(() => {
     getDataMeals();
   }, []);
+
+  if (loading) {
+    return <ListMealSkeleton />;
+  }
 
   return (
     <View style={{ marginTop: 15 }}>

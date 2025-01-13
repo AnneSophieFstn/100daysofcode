@@ -58,7 +58,6 @@ export type ItemMealProps = {
   idMeal: string;
   image: string;
   title: string;
-  loading: boolean;
 };
 
 export type ItemMealCategory = {

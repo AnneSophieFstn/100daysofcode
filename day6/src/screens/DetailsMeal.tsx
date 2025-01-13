@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import {
-  ActivityIndicator,
-  ActivityIndicatorComponent,
   Image,
   ScrollView,
   StyleSheet,
@@ -12,10 +10,8 @@ import {
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RecipeMeal } from "../types/MealType";
-import FavoriteContext, {
-  FavoriteMealContext,
-} from "../context/FavoriteContext";
-import { Skeleton } from "moti/skeleton";
+import { FavoriteMealContext } from "../context/FavoriteContext";
+import DetailsMealSkeleton from "../components/skeleton/DetailsMealSkeleton";
 
 export default function DetailsMeal(props) {
   const idMeal = props.route.params?.idMeal;
@@ -34,7 +30,10 @@ export default function DetailsMeal(props) {
 
       const json = await data.json();
 
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+
       setRecipe(json.meals[0]);
     } catch (error) {
       console.error("ERROR: ", error);
@@ -89,19 +88,9 @@ export default function DetailsMeal(props) {
   }, [recipe]);
 
   if (loading) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <ActivityIndicator />
-      </View>
-    );
+    return <DetailsMealSkeleton />;
   }
+
   return (
     <ScrollView
       contentContainerStyle={{ backgroundColor: "#fff", paddingBottom: 80 }}

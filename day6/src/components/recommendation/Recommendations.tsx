@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import ListRecommendation from "./ListRecommendation";
 import CustomList from "../CustomList";
+import ListMealSkeleton from "../skeleton/ListMealSkeleton";
 
 export default function Recommendations() {
   const [country, setRecommendation] = useState([]);
@@ -13,12 +14,20 @@ export default function Recommendations() {
       "https://www.themealdb.com/api/json/v1/1/search.php?f=f"
     );
     const json = await data.json();
-    setLoading(false);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
     setRecommendation(json.meals);
   };
   useEffect(() => {
     getDataRecommendation();
   }, []);
+
+  if (loading) {
+    return <ListMealSkeleton />;
+  }
 
   return (
     <View style={{ marginTop: 15 }}>

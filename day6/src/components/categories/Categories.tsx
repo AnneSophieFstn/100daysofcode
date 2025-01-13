@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 import ListCategories from "./ListCategories";
-import SkeletonScreen from "../SkeletonScreen";
+import ItemCategorySkeleton from "../skeleton/ItemCategorySkeleton";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
@@ -15,7 +15,9 @@ export default function Categories() {
       );
 
       const json = await data.json();
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
       setCategories(json.categories);
     } catch (error) {
       console.error("error: ", error);
@@ -25,6 +27,10 @@ export default function Categories() {
   useEffect(() => {
     getDataCategories();
   }, []);
+
+  if (loading) {
+    return <ItemCategorySkeleton />;
+  }
 
   return (
     <View style={{ marginTop: 20 }}>

@@ -23,7 +23,7 @@ Chaque repo a son propre README dans lequel le travail du jour sera expliqué.
 - Day 8: Continue to the recipe app - Recommendations and search page
 - Day 9: Continue to the recipe app - Favorites page (useContext)
 - Day 10: Continue to the recipe app - Finish app (without animation)
-- Day 11:
+- Day 11: Reanimated - Skeleton loader in the Recipe app project
 - Day 12:
 - Day 13:
 - Day 14:
