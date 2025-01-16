@@ -24,9 +24,9 @@ Chaque repo a son propre README dans lequel le travail du jour sera expliqué.
 - Day 9: Continue to the recipe app - Favorites page (useContext)
 - Day 10: Continue to the recipe app - Finish app (without animation)
 - Day 11: Reanimated - Skeleton loader in the Recipe app project
-- Day 12:
-- Day 13:
-- Day 14:
+- Day 12: Weather app with Reanimated 3, React native Skia and expo location.
+- Day 13: Weather app - Home background with React native Skia
+- Day 14: Weather app - TabBar with React native Skia
 - Day 15:
 - Day 16:
 - Day 17:
