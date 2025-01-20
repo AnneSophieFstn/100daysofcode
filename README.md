@@ -27,8 +27,8 @@ Chaque repo a son propre README dans lequel le travail du jour sera expliqué.
 - Day 12: Weather app with Reanimated 3, React native Skia and expo location.
 - Day 13: Weather app - Home background with React native Skia
 - Day 14: Weather app - TabBar with React native Skia
-- Day 15:
-- Day 16:
+- Day 15: Weather app - BottomSheet with react native skia interface
+- Day 16: Weather app - Continue interface BottomSheet with react native skia and show static data and widgets
 - Day 17:
 - Day 18:
 - Day 19:
