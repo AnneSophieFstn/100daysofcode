@@ -21,7 +21,7 @@ import VisibilityWidget from "../forecast/widgets/VisibilityWidget";
 import PressureWidget from "../forecast/widgets/PressureWidget";
 export default function ForecastSheet() {
   const { width, height } = useApplicationDimensions();
-  const smallWidgetSize = width / 2;
+  const smallWidgetSize = width / 2 - 20;
   const snapPoints = ["38.5%", "83%"];
   const firstSnapPoint = height * (parseFloat(snapPoints[0]) / 100);
   const cornerRadius = 44;
