@@ -29,7 +29,7 @@ Chaque repo a son propre README dans lequel le travail du jour sera expliqué.
 - Day 14: Weather app - TabBar with React native Skia
 - Day 15: Weather app - BottomSheet with react native skia interface
 - Day 16: Weather app - Continue interface BottomSheet with react native skia and show static data and widgets
-- Day 17:
+- Day 17: Weather app - Focus on animation with Reanimated & fetch data api (Tomorrow.io)
 - Day 18:
 - Day 19:
 - Day 20:
