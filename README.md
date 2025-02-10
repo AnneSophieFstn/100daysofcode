@@ -30,21 +30,21 @@ Chaque repo a son propre README dans lequel le travail du jour sera expliqué.
 - Day 15: Weather app - BottomSheet with react native skia interface
 - Day 16: Weather app - Continue interface BottomSheet with react native skia and show static data and widgets
 - Day 17: Weather app - Focus on animation with Reanimated & fetch data api (Tomorrow.io)
-- Day 18:
-- Day 19:
-- Day 20:
-- Day 21:
-- Day 22:
-- Day 23:
-- Day 24:
-- Day 25:
-- Day 26:
-- Day 27:
-- Day 28:
-- Day 29:
-- Day 30:
-- Day 31:
-- Day 32:
+- Day 18: My portfolio #1 [My personal portfolio](https://www.annesophiefaustino.com/)
+- Day 19: My portfolio - Work on different section #2 [My personal portfolio](https://www.annesophiefaustino.com/)
+- Day 20: My portfolio - Work on different section #3 [My personal portfolio](https://www.annesophiefaustino.com/)
+- Day 21: My portfolio - Finalisation #4 [My personal portfolio](https://www.annesophiefaustino.com/)
+- Day 22: Reflection on a new project
+- Day 23: Research phase on open-source map solutions
+- Day 24: Collecting feedback from potential stakeholders
+- Day 25: Setting up a questionnaire to gather opinions
+- Day 26: Starting wireframe #1
+- Day 27: Wireframe #2
+- Day 28: Creating mockup #1
+- Day 29: Mockup #2
+- Day 30: Creating Logo #1
+- Day 31: Logo #2
+- Day 32: Create views of app
 - Day 33:
 - Day 34:
 - Day 35:
